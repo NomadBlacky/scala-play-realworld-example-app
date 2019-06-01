@@ -27,5 +27,6 @@ lazy val root = (project in file("."))
       "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % "test",
     ),
     fork in run := true,
+    dockerBuildOptions += "--no-cache",
     dockerExposedPorts := Seq(9000)
   )
