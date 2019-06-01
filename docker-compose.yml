@@ -1,0 +1,25 @@
+version: '2'
+services:
+
+
+  backend:
+    image: scala-play-realworld-example-app:1.0
+    container_name: scala-play-realworld-example-app
+    ports:
+      - "9000:9000"
+
+  datadog-agent:
+    build: docker/datadog/
+    container_name: datadog-agent
+    environment:
+      - DD_API_KEY=${DATADOG_API_KEY}
+      - DD_PROCESS_AGENT_ENABLED=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - /etc/passwd:/etc/passwd:ro
+    ports:
+      - "8126:8126/tcp"
+    links:
+      - backend
