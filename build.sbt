@@ -1,11 +1,10 @@
-name := """real-world-example-project"""
-
-version := "1.0"
+ThisBuild / version := "1.0"
+ThisBuild / scalaVersion := "2.12.7"
 
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala, JavaAppPackaging)
   .settings(
-    scalaVersion := "2.12.7",
+    name := "scala-play-realworld-example-app",
     javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
     libraryDependencies ++= Seq(
       filters,
