@@ -28,5 +28,8 @@ lazy val root = (project in file("."))
     ),
     fork in run := true,
     dockerBuildOptions += "--no-cache",
-    dockerExposedPorts := Seq(9000)
+    dockerExposedPorts := Seq(9000),
+    javaOptions in Docker ++= Seq(
+      "-Dpidfile.path=/dev/null"
+    )
   )
